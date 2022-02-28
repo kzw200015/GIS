@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://jktu.cc:5432/gis
-    username: postgres
-    password: 15261841015kzw
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     hikari:
       max-lifetime: 60000
   sql:
