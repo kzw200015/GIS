@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://jktu.cc:5432/gis
+    username: postgres
+    password: 15261841015kzw
+    hikari:
+      max-lifetime: 60000
+  sql:
+    init:
+      schema-locations: classpath:/sql/schema.sql
+      mode: always
+      data-locations: classpath:/sql/data.sql
+
+mybatis-plus:
+  global-config:
+    banner: false
+  type-enums-package: cc.jktu.gis.model.constant
+
+logging:
+  level:
+    "org.springframework.security": debug
+
+server:
+  servlet:
+    session:
+      persistent: false
