@@ -7,3 +7,12 @@ CREATE TABLE users
     password VARCHAR(200) NOT NULL,
     role     INT          NOT NULL
 );
+
+CREATE TABLE accidents
+(
+    id          SERIAL PRIMARY KEY,
+    coordinate  geometry(POINT, 4326) NOT NULL,
+    description TEXT,
+    time        TIMESTAMP             NOT NULL,
+    is_resolved bool                  NOT NULL
+);
