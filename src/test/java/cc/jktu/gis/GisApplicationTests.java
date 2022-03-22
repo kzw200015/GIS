@@ -13,7 +13,7 @@ class GisApplicationTests {
     private UserService userService;
 
     @Test
-    void test() {
+    void generatePassword() {
         System.out.println(new BCryptPasswordEncoder().encode("123321"));
     }
 
