@@ -1,4 +1,10 @@
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS accident_polices;
+DROP TABLE IF EXISTS accidents;
+DROP TABLE IF EXISTS polices;
+DROP EXTENSION IF EXISTS postgis;
+
+CREATE EXTENSION postgis;
 
 CREATE TABLE users
 (
@@ -15,4 +21,17 @@ CREATE TABLE accidents
     description TEXT,
     time        TIMESTAMP             NOT NULL,
     is_resolved bool                  NOT NULL
+);
+
+CREATE TABLE polices
+(
+    id    SERIAL PRIMARY KEY,
+    name  VARCHAR(10) NOT NULL,
+    phone VARCHAR(50)
+);
+
+CREATE TABLE accident_polices
+(
+    accident_id SERIAL NOT NULL REFERENCES accidents (id),
+    police_id   SERIAL NOT NULL REFERENCES polices (id)
 );
