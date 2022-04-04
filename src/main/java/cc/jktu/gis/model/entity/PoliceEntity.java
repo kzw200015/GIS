@@ -1,5 +1,7 @@
 package cc.jktu.gis.model.entity;
 
+import cc.jktu.gis.model.constant.Gender;
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,5 +13,7 @@ public class PoliceEntity extends BaseEntity {
 
     private String name;
     private String phone;
+    @EnumValue
+    private Gender gender;
 
 }

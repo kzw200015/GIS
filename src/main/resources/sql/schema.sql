@@ -20,14 +20,15 @@ CREATE TABLE accidents
     coordinate  geometry(POINT, 4326) NOT NULL,
     description TEXT,
     time        TIMESTAMP             NOT NULL,
-    is_resolved bool                  NOT NULL
+    is_resolved BOOLEAN               NOT NULL
 );
 
 CREATE TABLE polices
 (
-    id    SERIAL PRIMARY KEY,
-    name  VARCHAR(10) NOT NULL,
-    phone VARCHAR(50)
+    id     SERIAL PRIMARY KEY,
+    name   VARCHAR(10) NOT NULL,
+    gender INT         NOT NULL,
+    phone  VARCHAR(50)
 );
 
 CREATE TABLE accident_polices
