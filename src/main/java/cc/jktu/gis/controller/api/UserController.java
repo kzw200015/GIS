@@ -26,12 +26,12 @@ public class UserController {
 
     @PostMapping("")
     public void addUser(@RequestBody UserEntity userEntity) {
-
+        userService.addUser(userEntity);
     }
 
     @DeleteMapping("/{id}")
     public void removeUser(@PathVariable("id") Integer id) {
-
+        userService.removeUser(id);
     }
 
 }

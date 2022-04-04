@@ -39,4 +39,12 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+    public void addUser(UserEntity userEntity) {
+        userMapper.insert(userEntity);
+    }
+
+    public void removeUser(Integer id) {
+        userMapper.deleteById(id);
+    }
+
 }
