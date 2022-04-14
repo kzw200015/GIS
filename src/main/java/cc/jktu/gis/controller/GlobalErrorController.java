@@ -20,7 +20,7 @@ public class GlobalErrorController implements ErrorController {
 
     private final ErrorAttributes errorAttributes;
 
-    @GetMapping
+    @RequestMapping
     public CommonResp error(HttpServletRequest request) {
         final Throwable ex = errorAttributes.getError(new ServletWebRequest(request));
         final HttpStatus httpStatus = getHttpStatus(request);

@@ -3,7 +3,7 @@ package cc.jktu.gis.model.constant;
 import com.baomidou.mybatisplus.annotation.IEnum;
 
 public enum Role implements IEnum<Integer> {
-    ADMIN, REPORTER;
+    ADMIN, REPORTER, POLICE;
 
     public String toAuthorityString() {
         return "ROLE_" + name();

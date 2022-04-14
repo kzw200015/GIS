@@ -1,5 +1,6 @@
 package cc.jktu.gis.model.entity;
 
+import cc.jktu.gis.model.constant.Gender;
 import cc.jktu.gis.model.constant.Role;
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -23,6 +24,10 @@ public class UserEntity extends BaseEntity implements UserDetails {
     private String password;
     @EnumValue
     private Role role;
+    private String name;
+    private String phone;
+    @EnumValue
+    private Gender gender;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

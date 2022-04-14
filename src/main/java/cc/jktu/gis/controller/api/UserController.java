@@ -29,6 +29,11 @@ public class UserController {
         userService.addUser(userEntity);
     }
 
+    @PatchMapping("/{id}")
+    public void updateUser(@PathVariable("id") Integer id, @RequestBody UserEntity user) {
+        userService.updateUser(id, user);
+    }
+
     @DeleteMapping("/{id}")
     public void removeUser(@PathVariable("id") Integer id) {
         userService.removeUser(id);

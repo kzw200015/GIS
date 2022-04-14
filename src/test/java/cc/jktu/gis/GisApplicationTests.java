@@ -14,7 +14,7 @@ class GisApplicationTests {
 
     @Test
     void generatePassword() {
-        System.out.println(new BCryptPasswordEncoder().encode("123321"));
+        System.out.println(new BCryptPasswordEncoder().encode("1234abc"));
     }
 
 }

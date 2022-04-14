@@ -27,7 +27,7 @@ import java.nio.charset.StandardCharsets;
 
 @Configuration
 @RequiredArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
 
@@ -54,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                .formLogin().disable()
                 .logout(logout -> {
                     logout.logoutUrl("/api/logout");
                     logout.invalidateHttpSession(true);
@@ -63,9 +64,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     exceptionHanding.authenticationEntryPoint(this::handleException);
                     exceptionHanding.accessDeniedHandler(this::handleException);
                 }).authorizeRequests(authorizeRequests -> {
-                    authorizeRequests.antMatchers("/api/login", "/api/register").permitAll();
-                    authorizeRequests.antMatchers("/api/admin/**").hasRole(Role.ADMIN.name());
-                    authorizeRequests.antMatchers("/api/**").authenticated();
+                    authorizeRequests.mvcMatchers("/api/login", "/api/register", "/api/ws/**").permitAll();
+                    authorizeRequests.mvcMatchers("/api/admin/**").hasRole(Role.ADMIN.name());
+                    authorizeRequests.mvcMatchers("/api/**").authenticated();
                     authorizeRequests.anyRequest().permitAll();
                 }).addFilterAt(jsonUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

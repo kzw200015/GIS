@@ -1,6 +1,6 @@
 package cc.jktu.gis.security;
 
-import cc.jktu.gis.model.schema.LoginBody;
+import cc.jktu.gis.model.schema.LoginReq;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.springframework.security.authentication.AuthenticationServiceException;
@@ -22,14 +22,14 @@ public class JsonUsernamePasswordAuthenticationFilter extends UsernamePasswordAu
         if (!request.getMethod().equals("POST")) {
             throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
         }
-        final LoginBody loginBody = parseLoginBody(request.getInputStream());
-        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(loginBody.getUsername(), loginBody.getPassword());
+        final LoginReq loginReq = parseLoginBody(request.getInputStream());
+        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(loginReq.getUsername(), loginReq.getPassword());
         setDetails(request, authRequest);
         return this.getAuthenticationManager().authenticate(authRequest);
     }
 
-    protected LoginBody parseLoginBody(InputStream body) throws IOException {
-        return new ObjectMapper().readValue(body, LoginBody.class);
+    protected LoginReq parseLoginBody(InputStream body) throws IOException {
+        return new ObjectMapper().readValue(body, LoginReq.class);
     }
 
 }
