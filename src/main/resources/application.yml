@@ -24,4 +24,4 @@ logging:
 server:
   servlet:
     session:
-      persistent: false
+      persistent: true

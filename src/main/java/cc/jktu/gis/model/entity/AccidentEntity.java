@@ -19,5 +19,6 @@ public class AccidentEntity extends BaseEntity {
     private String description;
     private Instant time;
     private Boolean isResolved;
+    private String image;
 
 }

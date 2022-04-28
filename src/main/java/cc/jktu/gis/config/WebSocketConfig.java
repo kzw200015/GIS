@@ -14,9 +14,8 @@ public class WebSocketConfig extends AbstractSecurityWebSocketMessageBrokerConfi
 
     @Override
     protected void configureInbound(MessageSecurityMetadataSourceRegistry messages) {
-        messages.simpMessageDestMatchers("/report").hasRole(Role.POLICE.name());
-        messages.simpSubscribeDestMatchers("/topic/locations").hasRole(Role.ADMIN.name());
-        messages.anyMessage().denyAll();
+        messages.simpMessageDestMatchers("/app/locations/report").hasRole(Role.POLICE.name());
+        messages.anyMessage().hasRole(Role.ADMIN.name());
     }
 
     @Override
@@ -26,7 +25,7 @@ public class WebSocketConfig extends AbstractSecurityWebSocketMessageBrokerConfi
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/api/ws").setAllowedOrigins("http://localhost:8080").withSockJS();
+        registry.addEndpoint("/api/ws").setAllowedOriginPatterns("*");
     }
 
     @Override

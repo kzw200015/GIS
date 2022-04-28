@@ -7,7 +7,6 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -17,14 +16,14 @@ public class LocationController {
 
     private final LocationCache locationCache;
 
-    @MessageMapping("/report")
+    @MessageMapping("/locations/report")
     @SendTo("/topic/locations/update")
     public Location receiveLocation(Location location) {
         locationCache.setLocation(location.getId(), location);
         return location;
     }
 
-    @MessageMapping("/all")
+    @MessageMapping("/locations/all")
     @SendToUser("/topic/locations/all")
     public List<Location> getAllLocations() {
         return locationCache.getAll();

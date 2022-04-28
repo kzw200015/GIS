@@ -22,7 +22,8 @@ CREATE TABLE accidents
     coordinate  geometry(POINT, 4326) NOT NULL,
     description TEXT                  NULL,
     time        TIMESTAMP             NOT NULL,
-    is_resolved BOOLEAN               NOT NULL
+    is_resolved BOOLEAN               NOT NULL,
+    image       VARCHAR(200)          NULL
 );
 
 CREATE TABLE accident_users
