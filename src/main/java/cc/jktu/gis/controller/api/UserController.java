@@ -1,6 +1,7 @@
 package cc.jktu.gis.controller.api;
 
 import cc.jktu.gis.model.entity.UserEntity;
+import cc.jktu.gis.model.schema.PageResp;
 import cc.jktu.gis.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -22,6 +23,11 @@ public class UserController {
     @GetMapping("/{id}")
     public UserEntity getUserById(@PathVariable("id") Integer id) {
         return userService.getUserById(id);
+    }
+
+    @GetMapping("")
+    public PageResp<UserEntity> getUsersByPage(@RequestParam("page") Long page, @RequestParam("size") Long size) {
+        return userService.getUsersByPage(page, size);
     }
 
     @PostMapping("")

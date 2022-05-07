@@ -3,8 +3,10 @@ package cc.jktu.gis.service;
 import cc.jktu.gis.model.entity.UserEntity;
 import cc.jktu.gis.model.exception.EntityNotFoundException;
 import cc.jktu.gis.model.mapper.UserMapper;
+import cc.jktu.gis.model.schema.PageResp;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -50,6 +52,16 @@ public class UserService implements UserDetailsService {
     public void updateUser(Integer id, UserEntity user) {
         user.setId(id);
         userMapper.updateById(user);
+    }
+
+    public PageResp<UserEntity> getUsersByPage(Long page, Long size) {
+        final Page<UserEntity> users = userMapper.selectPage(new Page<>(page, size), null);
+        final PageResp<UserEntity> pageResp = new PageResp<>();
+        pageResp.setTotal(users.getTotal());
+        pageResp.setPage(users.getCurrent());
+        pageResp.setSize(users.getSize());
+        pageResp.setValues(users.getRecords());
+        return pageResp;
     }
 
 }

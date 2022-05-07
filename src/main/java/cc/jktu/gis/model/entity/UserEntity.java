@@ -24,10 +24,6 @@ public class UserEntity extends BaseEntity implements UserDetails {
     private String password;
     @EnumValue
     private Role role;
-    private String name;
-    private String phone;
-    @EnumValue
-    private Gender gender;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
