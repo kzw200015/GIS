@@ -9,10 +9,8 @@ import cc.jktu.gis.model.mapper.AccidentMapper;
 import cc.jktu.gis.model.mapper.PoliceMapper;
 import cc.jktu.gis.model.mapper.UserMapper;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.Test;
 import org.postgis.Point;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-@SpringBootTest
+//@SpringBootTest
 class GisApplicationTests {
 
     @Autowired
@@ -30,19 +28,18 @@ class GisApplicationTests {
     @Autowired
     private AccidentMapper accidentMapper;
 
-    @Test
     void generatePassword() {
         System.out.println(new BCryptPasswordEncoder().encode("1234abc"));
     }
 
-    @Test
+
     void generateData() {
         generateUsers();
         generateAccidents();
         generatePolices();
     }
 
-    @Test
+
     void generateUsers() {
         final Faker faker = new Faker(new Locale("zh-CN"));
         final List<UserEntity> users = new ArrayList<>();
@@ -57,7 +54,7 @@ class GisApplicationTests {
         users.forEach(u -> userMapper.insert(u));
     }
 
-    @Test
+
     void generateAccidents() {
         final Faker faker = new Faker(new Locale("zh-CN"));
         final ArrayList<AccidentEntity> accidents = new ArrayList<>();
@@ -75,11 +72,11 @@ class GisApplicationTests {
         accidents.forEach(accident -> accidentMapper.insert(accident));
     }
 
-    @Test
+
     void generatePolices() {
         final Faker faker = new Faker(new Locale("zh-CN"));
         final ArrayList<PoliceEntity> polices = new ArrayList<>();
-        for (int i = 1; i <= 1; i++) {
+        for (int i = 1; i <= 8; i++) {
             final PoliceEntity police = new PoliceEntity();
             police.setId(i);
             police.setUserId(i + 2);

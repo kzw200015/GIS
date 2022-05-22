@@ -16,7 +16,7 @@ public class LocationCache {
     private final Map<Integer, Location> locationMap = new ConcurrentHashMap<>() {
         {
             final Random random = new Random();
-            for (int i = 0; i <= 10; i++) {
+            for (int i = 1; i <= 8; i++) {
                 int id = i;
                 put(i, new Location() {
                     {
